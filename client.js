@@ -1,5 +1,11 @@
-
 $(document).ready(function () {
+    if ("WebSocket" in window){
+	websocket = true;
+    }else{
+	// no web socket support
+	websocket = false;
+    }
+
     var msg = { event: 'register', };
     ws_send(msg);
 }); // ready end
@@ -9,9 +15,6 @@ function myfunction(){
     msg = { event: 'x', some_data: 'hello websocket world', };
     ws_send(msg);
 }
-
-
-// utility functions /////////////////////////////////////////////////////////////////
 
 
 function ws_send(msg){
