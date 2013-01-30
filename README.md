@@ -7,14 +7,40 @@ Websockets provide convenient server to client messaging. To work with websocket
 
 http://caniuse.com/websockets
 
-On server side I use [Tornado](http://www.tornadoweb.org/) web server supports websockets. It works nicely.
+There are two files in this example. Sections below explain both of them.
 
-This repository contains two files:
 
-1. client.js: contains javascript client code, which opens a websocket to the server and attempts to re-open it on websocket close event.
+client.js
+-------------
+client.js: contains javascript client code, which opens a websocket to the server and attempts to re-open it on websocket close event.
 
-2. tornado_server.py: contains python server code, which opens a websocket along with standart http socket and waits for connections.
+client.js should run on client side (ie. embed this javascript to your html file). On page load the code tries to establish websocket connection with address: "ws://" + window.location.host + "/websocket". If for some reason connection is closed, javascript code will try to re-open the connection. You can insert your custom processing into the ws.onmessage function.
 
-Please let me know if you spot any errors or would like to send thanks : )
 
-Contact: eposta@cankavaklioglu.name.tr
+tornado_server.py
+--------------------
+Python code in tornado_server.py uses [Tornado](http://www.tornadoweb.org/) web server to open a websocket connection as well as an http connection. Once Tornado is installed (<pre>pip install tornado</pre>) you can use the command below to initialize the web server:
+
+python tornado_server.py
+
+To test if http server is running you can visit http://localhost:8080/hello-tornado page. Please note that websockets are not accessible through http. So do not try to access /websocket via your browser.
+
+If it all goes according to the plan you should see the following on your browser's console:
+
+<pre>
+ws open
+ws_send sent
+</pre>
+
+Python code will also provide some output:
+
+<pre>
+WebSocket opened
+msg recevied ...
+</pre>
+
+Server code stores connected clients in its MyWebSocket.clients data structure. Once a message is received from a client all other recorded clients are forwarded the sent message. If a client disconnects for some reason the MyWebSocket.clients list is updated.
+
+Contact
+--------------------
+Please let me know if you spot any errors or for any other reason: eposta@cankavaklioglu.name.tr
