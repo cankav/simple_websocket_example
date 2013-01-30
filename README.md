@@ -12,10 +12,12 @@ There are two files in this example. Sections below explain both of them.
 
 client.js
 -------------
-client.js: contains javascript client code, which opens a websocket to the server and attempts to re-open it on websocket close event.
+Contains javascript client code, which opens a websocket to the server and attempts to re-open it on websocket close event.
 
-client.js should run on client side (ie. embed this javascript to your html file). On page load the code tries to establish websocket connection with address: "ws://" + window.location.host + "/websocket". If for some reason connection is closed, javascript code will try to re-open the connection. You can insert your custom processing into the ws.onmessage function.
+client.js should run on client side, which may be embeded to your html file. On page load the code tries to establish websocket connection with address: "ws://localhost:8080/websocket". If for some reason connection is closed, javascript code will try to re-open the connection.
 
++ Insert your custom processing into the ws.onmessage function. 
++ Use the ws_send function to send a message to the server. 
 
 tornado_server.py
 --------------------
