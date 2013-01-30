@@ -61,7 +61,7 @@ function open_ws(msg){
            // websocket is closed, re-open
            console.log("Connection is closed... reopen");
 	   var msg = { event: 'register', };
-	   ws_send(msg);
+	   setTimeout( function(){ws_send(msg);}, 1000 );
        };
    }
 }
