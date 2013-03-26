@@ -1,4 +1,4 @@
-simple_websocket_example
+simple websocket example
 ========================
 
 Simple websocket example with javascript client and python Tornado server files
