@@ -52,4 +52,4 @@ Server code stores connected clients in its MyWebSocket.clients data structure. 
 
 Contact
 --------------------
-Please let me know if you spot any errors or for any other reason: eposta@cankavaklioglu.name.tr
+Please let me know if you spot any errors or for any other reason
