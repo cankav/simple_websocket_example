@@ -15,7 +15,7 @@ class HelloHandler(tornado.web.RequestHandler):
         self.write('Hello from tornado')
 
 class MyWebSocket(tornado.websocket.WebSocketHandler):
-  clients = []
+    clients = []
 
     def check_origin(self, origin):
         return True
