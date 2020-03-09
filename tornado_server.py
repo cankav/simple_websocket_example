@@ -20,10 +20,10 @@ class MyWebSocket(tornado.websocket.WebSocketHandler):
   def open(self):
     # clients must be accessed through class object!!!
     MyWebSocket.clients.append(self)
-    print "\nWebSocket opened"
+    print ("\nWebSocket opened")
 
   def on_message(self, message):
-    print "msg recevied", message
+    print ("msg recevied", message)
     msg = json.loads(message) # todo: safety?
 
     # send other clients this message
@@ -32,7 +32,7 @@ class MyWebSocket(tornado.websocket.WebSocketHandler):
         c.write_message(msg)
 
   def on_close(self):
-    print "WebSocket closed"
+    print ("WebSocket closed")
     # clients must be accessed through class object!!!
     MyWebSocket.clients.remove(self)
 
