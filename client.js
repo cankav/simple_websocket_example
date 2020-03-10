@@ -1,11 +1,9 @@
 $(document).ready(function () {
     if ("WebSocket" in window){
-	console.log("web socket: OK!!");
 	websocket = true;
     }else{
 	// no web socket support
 	websocket = false;
-	console.log("no web socket support");
     }
 
     var msg = { event: 'register', };
@@ -66,8 +64,4 @@ function open_ws(msg){
 	   setTimeout( function(){ws_send(msg);}, 1000 );
        };
    }
-   else
-   {
-		console.log("JS>ELSE");
-	}
 }
