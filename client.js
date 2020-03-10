@@ -1,9 +1,11 @@
 $(document).ready(function () {
     if ("WebSocket" in window){
+	console.log("web socket: OK!!");
 	websocket = true;
     }else{
 	// no web socket support
 	websocket = false;
+	console.log("no web socket support");
     }
 
     var msg = { event: 'register', };
@@ -38,15 +40,15 @@ function open_ws(msg){
        ws.onopen = function(){
            // Web Socket is connected, send data using send()
            console.log("ws open");
-	   if( msg.length != 0 ){
-               ws_send(msg);
-           }
-       };
+		   if( msg.length != 0 ){
+				   ws_send(msg);
+			   }
+		   };
 
        ws.onmessage = function (evt){
            var received_msg = evt.data;
            console.log(evt.data);
-	   msg = JSON.parse(evt.data)
+            msg = JSON.parse(evt.data)
 
            if( msg.event == "x" ){
 	       // process message x
@@ -64,4 +66,8 @@ function open_ws(msg){
 	   setTimeout( function(){ws_send(msg);}, 1000 );
        };
    }
+   else
+   {
+		console.log("JS>ELSE");
+	}
 }
