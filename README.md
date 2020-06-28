@@ -58,7 +58,7 @@ For docker setup:
 
 docker-compose.yml
 --------------------
-<code>
+<pre>
  version: '3.7'
 services:
   tornado_app:
@@ -73,13 +73,13 @@ networks:
   my_net:
     driver: bridge
 
- </code>
+ </pre>
 
 
 
 dockerfile
 --------------------
-<code>
+<pre>
   # this is our first build stage, it will not persist in the final image
 FROM ubuntu
 
@@ -97,4 +97,4 @@ RUN git clone https://github.com/engFelipeMonteiro/simple_websocket_example.git
 
 #start server
 CMD python3 simple_websocket_example/tornado_server.py
-</code>
+</pre>
