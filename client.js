@@ -33,7 +33,7 @@ function ws_send(msg){
 function open_ws(msg){
    if( typeof(ws) == 'undefined' || ws.readyState === undefined || ws.readyState > 1){
      // websocket on same server with address /websocket
-     ws = new WebSocket("ws://localhost:8080/websocket");
+     ws = new WebSocket("ws://localhost:8888/websocket");
 
        ws.onopen = function(){
            // Web Socket is connected, send data using send()
