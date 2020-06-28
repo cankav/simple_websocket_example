@@ -53,3 +53,48 @@ Server code stores connected clients in its MyWebSocket.clients data structure. 
 Contact
 --------------------
 Please let me know if you spot any errors or for any other reason
+
+For docker setup:
+
+docker-compose.yml
+--------------------
+<code>
+ version: '3.7'
+services:
+  tornado_app:
+    ports:
+      - "8080:8888"
+    build:
+      context: .
+    networks:
+      - my_net
+
+networks:
+  my_net:
+    driver: bridge
+
+ </code>
+
+
+
+dockerfile
+--------------------
+<code>
+  # this is our first build stage, it will not persist in the final image
+FROM ubuntu
+
+# install needed packages
+RUN apt-get update
+
+RUN apt-get install -y git python3-pip nano
+
+# install python library needed
+RUN pip3 install setuptools wget  tornado
+
+# clone repository
+RUN git clone https://github.com/engFelipeMonteiro/simple_websocket_example.git
+#RUN cd simple_websocket_example
+
+#start server
+CMD python3 simple_websocket_example/tornado_server.py
+</code>
