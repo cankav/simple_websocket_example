@@ -33,20 +33,20 @@ function ws_send(msg){
 function open_ws(msg){
    if( typeof(ws) == 'undefined' || ws.readyState === undefined || ws.readyState > 1){
      // websocket on same server with address /websocket
-     ws = new WebSocket("ws://localhost:8080/websocket");
+     ws = new WebSocket("ws://localhost:8888/websocket");
 
        ws.onopen = function(){
            // Web Socket is connected, send data using send()
            console.log("ws open");
-	   if( msg.length != 0 ){
-               ws_send(msg);
-           }
-       };
+		   if( msg.length != 0 ){
+				   ws_send(msg);
+			   }
+		   };
 
        ws.onmessage = function (evt){
            var received_msg = evt.data;
            console.log(evt.data);
-	   msg = JSON.parse(evt.data)
+            msg = JSON.parse(evt.data)
 
            if( msg.event == "x" ){
 	       // process message x
